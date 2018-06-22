@@ -1,0 +1,54 @@
+//Font-color
+$font-black: #333
+$font-grey: #777
+    
+//Font-size    
+$item-headline-font-size: 3em
+$item-headline-second-font-size: 2em
+$item-prize-fs: 1.2em
+$detail-font-size: 18px
+
+
+//Border
+$bradius: 3px
+
+//Color
+$dark-c: #195656
+$fc-dark: #262626
+$fc-soft-dark: #555555
+@mixin img-fluid
+    max-width: 100%
+    max-height: 100% 
+    width: 100%  
+@mixin bshadow
+    -webkit-box-shadow: 1px 1px 16px -1px rgba(232,223,232,1)
+    -moz-box-shadow: 1px 1px 16px -1px rgba(232,223,232,1)
+    box-shadow: 1px 1px 16px -1px rgba(232,223,232,1)
+
+@mixin box-s-r
+    -webkit-box-shadow: 1px 1px 16px -1px rgba(232,223,232,1)
+    -moz-box-shadow: 1px 1px 16px -1px rgba(232,223,232,1)
+    box-shadow: 1px 1px 16px -1px rgba(232,223,232,1)
+    border-radius: $bradius
+
+@mixin btn-hover
+    -webkit-transition-duration: 0.4s /* Safari */
+    transition-duration: 0.4s
+
+@mixin btn-basic
+    font-weight: bold
+    font-size: $item-prize-fs
+    color: $font-black
+    border: 1px solid $dark-c
+    border-radius: $bradius 
+    padding: $gpad
+    background-color: white
+
+@mixin bbox
+    width: 100%
+    min-width: 520px
+    background-color: #EEE
+    margin: 15px
+    padding: $gpad
+    border-radius: $bradius
+    @include bshadow
