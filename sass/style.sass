@@ -2,11 +2,71 @@
 .container
     // background-color: blue
     .item
-        border: 1px solid 
+        padding: $gpad
+        margin-top: $gpad
+        
+        height: 75%
+        position: relative
+        // border: 1px solid 
+
+        @include box-s-r
+        .item-content
+            // height: 10%
+            padding: $gpad
         .item-img-container  
             padding: 0px !important
-            height: 50%
-            max-height: 500px !important
+            height: 40%
+            max-height: 600px !important
         .item-img-container img   
             @include img-fluid
+            height: 100%
             border-radius: $bradius
+        .item-headline
+            @include header-font
+        
+        .media_type
+            border: 1px solid
+            width: 25%
+            text-align: center
+            padding: $gpad
+            margin: 0 auto
+            color: #ddd
+        .CD
+            background-color: #561956
+        .Book
+            background-color: #561956
+        .DVD
+            background-color: #561919
+        .details
+            float: left
+        .item-detail
+            margin-top: 10px
+        .item-subtitle
+            font-size: 18px
+            margin-right: 15px
+            margin-bottom: 5px
+        .available
+            color: green
+            font-size: 1.5em
+        .false
+            color: red
+        .item-bottom
+            position: absolute
+            height: 10%
+            width: 93%
+            bottom: 5px
+            display: flex
+            justify-content: center
+            align-items: center
+
+            button
+                @include btn-basic
+                @include btn-hover
+            button:hover
+                background-color: $dark-c
+                color: white
+            button > a 
+                color: $fc-dark
+                text-decoration: none
+            button > a:hover
+                color: white !important

@@ -51,3 +51,27 @@ CREATE TABLE rents(
 
 INSERT INTO media_items (`media_title`, `media_descri`, `media_pub_date`, `available`) VALUES
 	('Bau.steine', '', STR_TO_DATE('01-01-2018', '%d-%m-%Y'), 'true');
+
+
+SELECT  `media_items`.`media_title`, 
+        `media_items`.`media_descri`, 
+        `media_items`.`available`, 
+        `media_items`.`media_items_img`,
+        `media_items`.`lang`,
+        `media_items`.`rating`,
+        `publishers`.`publisher_name`,
+        `authors`.`author_firstname`,
+        `authors`.`author_lastname`,
+        `media_types`.`media_type_name`,
+        `regisseurs`.`regisseur_firstname`,
+        `regisseurs`.`regisseur_lastname`
+
+        FROM `media_items`
+        LEFT JOIN `publishers`
+        ON `media_items`.`fk_media_publisher`= `publishers`.`publisher_id`
+        LEFT JOIN `authors`
+        ON `media_items`.`fk_author_id`= `authors`.`author_id`
+        LEFT JOIN `media_types`
+        ON `media_items`.`fk_media_type` = `media_types`.`media_type_id`
+        LEFT JOIN `regisseurs`
+        ON `media_items`.`fk_regisseur_id` = `regisseurs`.`regisseur_id`
