@@ -9,10 +9,15 @@ $error = false;
 if ( isset($_POST['btn-signup']) ) {
 
  // sanitize user input to prevent sql injection
- $name = trim($_POST['name']);
- $name = strip_tags($name);
- $name = htmlspecialchars($name);
+ $first_name = trim($_POST['first_name']);
+ $first_name = strip_tags($first_name);
+ $first_name = htmlspecialchars($first_name);
 
+// sanitize user input to prevent sql injection
+ $sur_name = trim($_POST['sur_name']);
+ $sur_name = strip_tags($sur_name);
+ $sur_name = htmlspecialchars($sur_name);
+ 
  $email = trim($_POST['email']);
  $email = strip_tags($email);
  $email = htmlspecialchars($email);
@@ -22,15 +27,21 @@ if ( isset($_POST['btn-signup']) ) {
  $pass = htmlspecialchars($pass);
 
  // basic name validation
- if (empty($name)) {
+ if (empty($first_name && $sur_name)) {
   $error = true;
   $nameError = "Please enter your full name.";
- } else if (strlen($name) < 3) {
+ } else if (strlen($first_name) < 3) {
   $error = true;
   $nameError = "Name must have atleat 3 characters.";
- } else if (!preg_match("/^[a-zA-Z ]+$/",$name)) {
+ }else if (strlen($sur_name) < 3) {
   $error = true;
-  $nameError = "Name must contain alphabets and space.";
+  $nameError = "Name must have atleat 3 characters.";
+ } else if (!preg_match("/^[a-zA-Z ]+$/",$first_name)) {
+  $error = true;
+  $nameError = "First Name must contain alphabets and space.";
+ } else if (!preg_match("/^[a-zA-Z ]+$/",$sur_name)) {
+  $error = true;
+  $nameError = "Surname must contain alphabets and space.";
  }
 
  //basic email validation
@@ -63,17 +74,18 @@ $password = hash('sha256', $pass);
  // if there's no error, continue to signup
  if( !$error ) {
   
-  $query = "INSERT INTO users(userName,userEmail,userPass) VALUES('$name','$email','$password')";
+  $query = "INSERT INTO users(userFirstName,userSurName,userEmail,userPass) VALUES('$first_name','$sur_name','$email','$password')";
   $res = mysqli_query($conn, $query);
   
   if ($res) {
    $errTyp = "success";
    $errMSG = "Successfully registered, you may login now";
-  //  echo "name ".$name;
+  //  echo "name ".$first_name;
   //   echo "mail ".$email;
   //  echo "pass ".$pass;
 
-   unset($name);
+   unset($first_name);
+   unset($sur_name);
    unset($email);
    unset($pass);
   } else {
@@ -114,10 +126,13 @@ $password = hash('sha256', $pass);
       
           
 
-            <input type="text" name="name" class="form-control" placeholder="Enter Name" maxlength="50" value="<?php echo $name ?>" />
+            <input type="text" name="first_name" class="form-control" placeholder="Enter First Name" maxlength="50" value="<?php echo $first_name ?>" />
       
                <span class="text-danger"><?php echo $nameError; ?></span>
-          
+
+            <input type="text" name="sur_name" class="form-control" placeholder="Enter Surname" maxlength="50" value="<?php echo $sur_name ?>" />
+      
+               <span class="text-danger"><?php echo $nameError; ?></span>
     
       
   
