@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Erstellungszeit: 23. Jun 2018 um 15:00
+-- Erstellungszeit: 23. Jun 2018 um 16:06
 -- Server-Version: 5.6.38
 -- PHP-Version: 7.2.1
 
@@ -80,7 +80,7 @@ INSERT INTO `media_items` (`media_id`, `fk_media_publisher`, `fk_media_type`, `f
 (12, 7, 3, NULL, NULL, 'Cooking Tunes', 'CD mit 16 Weihnachtsliedern aus der Swing-Aera. Mit Künstlern wie Frank Sinatra, Perry Como, Dean Martin, Marlene Dietrich, Bing Crosby.', '2011-01-01', 'true', 'https://images-na.ssl-images-amazon.com/images/I/81QvxoSbGzL._SX522_.jpg', 'English', 2, NULL),
 (13, 7, 3, NULL, NULL, 'Garden Party', 'Sie feiern die Feste, wie sie fallen, und laden die nettesten Leute in Ihren Garten ein. Dazu legen Sie ein paar Würsten auf den Grill und die Garden Party-CD in den Player. Mit 15 beschwingten Songs und gut 70 Minuten Spielzeit.', '2015-01-01', 'true', 'https://images-na.ssl-images-amazon.com/images/I/71olPHj61jL._SX679_.jpg', 'English', 5, NULL),
 (14, 5, 2, NULL, NULL, 'No Reservation', 'Julia Child and Julie Powell - both of whom wrote memoirs - find their lives intertwined. Though separated by time and space, both women are at loose ends... until they discover that with the right combination of passion, fearlessness and butter, anything is possible.', '2011-01-01', 'true', 'https://ia.media-imdb.com/images/M/MV5BMTI1NzQ5MzU1OV5BMl5BanBnXkFtZTcwNzExODU0MQ@@._V1_UY209_CR0,0,140,209_AL_.jpg', 'English', 4, 2),
-(15, 5, 2, NULL, NULL, 'Burnt', 'Chef Adam Jones (Bradley Cooper) had it all - and lost it. A two-star Michelin rockstar with the bad habits to match, the former enfant terrible of the Paris restaurant scene did everything different every time out, and only ever cared about the thrill of creating explosions of taste. To land his own kitchen and that third elusive Michelin star though, hell need the best of the best on his side, including the beautiful Helene (Sienna Miller).', '2015-01-01', 'false', 'https://ia.media-imdb.com/images/M/MV5BNjEzNTk2OTEwNF5BMl5BanBnXkFtZTgwNzExMTg0NjE@._V1_UX182_CR0,0,182,268_AL_.jpg', 'German', 5, 2),
+(15, 3, 2, NULL, NULL, 'Burnt', 'Chef Adam Jones (Bradley Cooper) had it all - and lost it. A two-star Michelin rockstar with the bad habits to match, the former enfant terrible of the Paris restaurant scene did everything different every time out, and only ever cared about the thrill of creating explosions of taste. To land his own kitchen and that third elusive Michelin star though, hell need the best of the best on his side, including the beautiful Helene (Sienna Miller).', '2015-01-01', 'false', 'https://ia.media-imdb.com/images/M/MV5BNjEzNTk2OTEwNF5BMl5BanBnXkFtZTgwNzExMTg0NjE@._V1_UX182_CR0,0,182,268_AL_.jpg', 'German', 5, 2),
 (16, 2, 2, NULL, NULL, 'Madame Mallory', 'The family of talented cook, Hassan Kadam, has a life filled with both culinary delights and profound loss. Drifting through Europe after fleeing political violence in India that killed the family restaurant business and their mother, the Kadams arrive in France. Once there, a chance auto accident and the kindness of a young woman, Marguerite, in the village of Saint-Antonin-Noble-Val inspires Papa Kadam to set up a Indian restaurant there. Unfortunately, this puts the Kadams in direct competition with the snobbish Madame Mallorys acclaimed haute cuisine establishment across the street where Marguerite also works as a sous-chef. The resulting rivalry eventually escalates in personal intensity until it goes too far. In response, there is a bridging of sides initiated by Hassan, Marguerite and Madame Mallory herself, both professional and personal, that encourages an understanding that will change both sides forever.', '2009-01-01', 'false', 'https://ia.media-imdb.com/images/M/MV5BMTQ3Mjg2MTE4M15BMl5BanBnXkFtZTgwMzcyNDMwMjE@._V1_UY268_CR1,0,182,268_AL_.jpg', 'English', 5, 5),
 (17, 1, 2, NULL, NULL, 'Der Koch', 'Maravan, ein charmanter junger Einwanderer aus Sri Lanka, arbeitet seit dem Tod seiner Eltern im srilankischen Bürgerkrieg in Zürich als Küchenhilfe in einem Sternelokal, träumt aber von einem eigenen Restaurant. Er möchte traditionelle indische Küche, wie sie ihn seine Großtante lehrte, mit avantgardistischer Molekularküche verbinden. Sein Wahlspruch lautet \"Kochen ist Verwandeln\": Kaltes in Warmes, Hartes in Weiches, Saures in Süßes. Es stellt sich heraus, dass seine Kreationen eine stark aphrodisierende Wirkung haben: Als er beiläufig seine Kollegin Andrea zum Essen einlädt, verführt diese ihn nach dem Essen, obwohl sie eine Lesbe ist und obwohl er sehr konservativ ist und arrangierte Ehen für richtig hält. Die beiden ziehen den gemeinsamen Catering-Service Love Food auf, mit dem sie in das Liebesleben sexual-therapeutisch behandelter Ehepaare neues Leben bringen.', '2016-01-01', 'false', 'https://ia.media-imdb.com/images/M/MV5BMjIwOTg1MTYwNV5BMl5BanBnXkFtZTgwODI4MjA5NTE@._V1_UY268_CR9,0,182,268_AL_.jpg', 'German', 5, 6);
 
@@ -131,7 +131,8 @@ INSERT INTO `publishers` (`publisher_id`, `publisher_name`, `publisher_size`, `o
 (6, 'Scott Hicks', 'Tiny', NULL),
 (7, 'Butlers', 'Huge', NULL),
 (8, 'Matthaes', 'Large', NULL),
-(9, 'Tre Torri', 'Medium', NULL);
+(9, 'Tre Torri', 'Medium', NULL),
+(10, 'TEST', 'Tiny', NULL);
 
 -- --------------------------------------------------------
 
@@ -178,7 +179,8 @@ CREATE TABLE `rents` (
 
 CREATE TABLE `users` (
   `userId` int(11) NOT NULL,
-  `userName` varchar(30) NOT NULL,
+  `userFirstName` varchar(30) NOT NULL,
+  `userSurName` varchar(30) DEFAULT NULL,
   `userEmail` varchar(60) NOT NULL,
   `userPass` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -187,10 +189,16 @@ CREATE TABLE `users` (
 -- Daten für Tabelle `users`
 --
 
-INSERT INTO `users` (`userId`, `userName`, `userEmail`, `userPass`) VALUES
-(1, 'melanie', 'melanie@gmx.at', 'bcb15f821479b4d5772bd0ca866c00ad5f926e3580720659cc80d39c9d09802a'),
-(2, 'denis', 'denis@gmx.at', 'bcb15f821479b4d5772bd0ca866c00ad5f926e3580720659cc80d39c9d09802a'),
-(3, 'renate', 'renate@gmx.at', 'bcb15f821479b4d5772bd0ca866c00ad5f926e3580720659cc80d39c9d09802a');
+INSERT INTO `users` (`userId`, `userFirstName`, `userSurName`, `userEmail`, `userPass`) VALUES
+(1, 'melanie', NULL, 'melanie@gmx.at', 'bcb15f821479b4d5772bd0ca866c00ad5f926e3580720659cc80d39c9d09802a'),
+(2, 'denis', NULL, 'denis@gmx.at', 'bcb15f821479b4d5772bd0ca866c00ad5f926e3580720659cc80d39c9d09802a'),
+(3, 'renate', NULL, 'renate@gmx.at', 'bcb15f821479b4d5772bd0ca866c00ad5f926e3580720659cc80d39c9d09802a'),
+(4, 'hallo', NULL, 'hallo@gmx.at', 'bcb15f821479b4d5772bd0ca866c00ad5f926e3580720659cc80d39c9d09802a'),
+(5, 'age', NULL, 'age@gmx.at', 'bcb15f821479b4d5772bd0ca866c00ad5f926e3580720659cc80d39c9d09802a'),
+(6, 'Helga', 'Wrobel', 'helga@gmx.at', 'bcb15f821479b4d5772bd0ca866c00ad5f926e3580720659cc80d39c9d09802a'),
+(7, 'Sigi', 'Wrobel', 'sigi@gmx.at', 'bcb15f821479b4d5772bd0ca866c00ad5f926e3580720659cc80d39c9d09802a'),
+(8, 'Lena', 'Hoefler', 'lena@1.at', 'bcb15f821479b4d5772bd0ca866c00ad5f926e3580720659cc80d39c9d09802a'),
+(9, 'aaa', 'aaa', 'a@a.a', '2558a34d4d20964ca1d272ab26ccce9511d880579593cd4c9e01ab91ed00f325');
 
 --
 -- Indizes der exportierten Tabellen
@@ -271,7 +279,7 @@ ALTER TABLE `media_types`
 -- AUTO_INCREMENT für Tabelle `publishers`
 --
 ALTER TABLE `publishers`
-  MODIFY `publisher_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `publisher_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT für Tabelle `regisseurs`
@@ -289,7 +297,7 @@ ALTER TABLE `rents`
 -- AUTO_INCREMENT für Tabelle `users`
 --
 ALTER TABLE `users`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints der exportierten Tabellen
