@@ -1,3 +1,16 @@
+<?php
+    require_once 'db.php';
+    ob_start();
+	session_start();
+ $res=mysqli_query($conn, "SELECT * FROM users WHERE userId=".$_SESSION['user']);
+    $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
+        ?>
+
+           <!-- Hi' <?php echo $userRow['userEmail']; ?>
+            
+           <a href="logout.php?logout">Sign Out</a>
+  
+         -->
 
 <!DOCTYPE html>
 <html>
@@ -5,51 +18,91 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Cooking-thek</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link href="https://getbootstrap.com/docs/3.3/examples/carousel/carousel.css" rel="stylesheet">
-    <!-- some Bootstrap interactions relay on jquery -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <title>The Shelf</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
     <!-- fontawesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="stylesheet" href="css/style_index.css"> -->
+
 </head>
 
 <body>
-    <nav class="navbar bg-transparent">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header ">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand lead"  href="#">FaberDesign</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="active lead"><a href="#"><i class="glyphicon glyphicon-home"></i> Home <span class="sr-only">(current)</span></a></li>
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#"><i class="fas fa-atlas"></i> The Shelf</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle lead" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
-                        <ul class="dropdown-menu" id="filterOptions">
-                            <li><a class="filter all active" href="#" id="all" data="all">ALL</a></li>
-                            <li><a class="filter books" href="#" id="book">Book's</a></li>
-                            <li><a class="filter cds" href="#" id="cd">CD's</a></li>
-                            <li><a class="filter dvds" href="#" id="dvd">DVD's</a></li>
-                        </ul>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <?php 
+                    if ( isset($_SESSION['user'])!="" ) {
+                           ?>
+                                <li class="nav-item"><a href="items.php" class="nav-link">Show All</a></li>
+                            <?php
+                        }
+                ?>
+            
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Publisher
+                    <?php 
+                     $publisher_result = "SELECT `publishers`.`publisher_id`,
+                                    `publishers`.`publisher_name` FROM `publishers`
+                                    ";
+                    $result = $conn->query($publisher_result);
+                    // Check data are and throw an error if there would be a mistake
+                    if (!$result) {
+                                $outputDisplay .= "<p>MySQL No: " . $conn->errno . "</p>";
+                                $outputDisplay .= "<p>MySQL Error: " . $conn->error . "</p>";
+                                $outputDisplay .= "<p>SQL Statement: " . $publisher_result . "</p>";
+                                $outputDisplay .= "<p>MySQL Affected Rows: " . $conn->affected_rows . "</p>";
+                                echo "fail";
+                    } 
+                    $publisher_names = $result->fetch_all(MYSQLI_ASSOC);
+                            
+                    if(!$publisher_names){
+                        echo "fail";
+                    }else{
+                       // echo "$rows  Array work";
+                    }
+                ?>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <?php 
+                        foreach($publisher_names as $pub_nam){
+                            echo "<a class='dropdown-item' href='details.php?pub_id=".$pub_nam['publisher_id']."'>".$pub_nam['publisher_name']."</a>";
+                        };
+                    ?>
+                
+                </div>
+            </li>
+            
+            
+            <p class="navbar-text my-2 my-lg-0"> 
+                <?php 
+                    if ( isset($_SESSION['user'])!="" ) {
+                           echo "Hi' ".$userRow['userEmail'];
+                        }
+                ?>
+            </p>
+            <li class="nav-item">
+                
+                <a class="nav-link " href="logout.php?logout">
+                    <?php 
+                        if ( isset($_SESSION['user'])!="" ) {
+                            echo "<i class='fas fa-sign-out-alt'></i> Sign Out";
+                        }
+                    ?>
+                </a>
+            </li>
+            
+            <!-- <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+            </li> -->
+            </ul>
+
         </div>
-        <!-- /.container-fluid -->
     </nav>
