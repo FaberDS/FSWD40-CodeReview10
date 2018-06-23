@@ -84,7 +84,7 @@
             <p class="navbar-text my-2 my-lg-0"> 
                 <?php 
                     if ( isset($_SESSION['user'])!="" ) {
-                           echo "Hi' ".$userRow['userEmail'];
+                           echo "Hi' ".$userRow['userFirstName'];
                         }
                 ?>
             </p>

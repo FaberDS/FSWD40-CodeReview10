@@ -44,7 +44,7 @@ if( isset($_POST['btn-login']) ) {
   
   $password = hash('sha256', $pass); // password hashing
 
-  $res=mysqli_query($conn, "SELECT userId, userName, userPass FROM users WHERE userEmail='$email'");
+  $res=mysqli_query($conn, "SELECT userId, userFirstName, userSurName, userPass FROM users WHERE userEmail='$email'");
   $row=mysqli_fetch_array($res, MYSQLI_ASSOC);
   $count = mysqli_num_rows($res); // if uname/pass correct it returns must be 1 row
   
